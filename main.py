@@ -1,6 +1,7 @@
 import uvicorn
 from fastapi import FastAPI
 from sqladmin import Admin
+from starlette.middleware.cors import CORSMiddleware
 
 from config import DB_URL
 from core.db.database_handler import DatabaseHandler
@@ -13,6 +14,13 @@ db = DatabaseHandler(DB_URL)
 
 
 app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 admin = Admin(app, db.engine)
 
 
