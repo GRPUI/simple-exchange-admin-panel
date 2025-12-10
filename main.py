@@ -5,7 +5,7 @@ from starlette.middleware.cors import CORSMiddleware
 
 from config import DB_URL
 from core.db.database_handler import DatabaseHandler
-from core.model_views.currencies import CurrencyAdmin
+from core.model_views.currencies import CurrencyAdmin, CurrencyPairsAdmin
 from core.model_views.payment_categories import PaymentCategoryAdmin
 from core.model_views.texts import TextAdmin
 from core.model_views.users import UserAdmin
@@ -28,6 +28,7 @@ admin.add_view(UserAdmin)
 admin.add_view(TextAdmin)
 admin.add_view(CurrencyAdmin)
 admin.add_view(PaymentCategoryAdmin)
+admin.add_view(CurrencyPairsAdmin)
 
 if __name__ == "__main__":
     uvicorn.run(app, host="127.0.0.1", port=8000)
